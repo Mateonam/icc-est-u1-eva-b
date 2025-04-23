@@ -1,3 +1,6 @@
+import Models.Book;
+import Controllers.BookController;
+import Views.ViewConsole;
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -33,6 +36,26 @@ public class App {
                 new Book("Deep Learning", 2016),
                 new Book("The Elements of Statistical Learning", 2001)
         };
+
+        ViewConsole vC = new ViewConsole();
+        vC.printMessage("Arreglo sin ordenar");
+        System.out.println();
+        vC.printArray(books);
+        System.out.println();
+        vC.printMessage("Arreglo ordenado");
+
+        BookController bC = new BookController();
+        bC.sortByName(books);
+        vC.printArray(books);
+        vC.printMessage("Resultado de la búsqueda del libro Python the best book");
+
+        Book result = bC.searchByName(books, "Python the best book");
+        if (result == null) {
+            vC.printMessage("El libro no ha sido encontrado");
+        } else {
+            System.out.println(result);
+        }
+
 
     }
 }
